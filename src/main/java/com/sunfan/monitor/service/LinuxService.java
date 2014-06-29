@@ -15,6 +15,18 @@ public class LinuxService {
 	private String defaultTopComand = "top -b -n 1";
 	@Autowired
 	private LinuxConnectionPool pool ;
+	
+	
+	/**
+	 * execute default command "top -b -n 1" and return String type reslut
+	 * if you want to change the default ,please invoke setDefaultTopComand method.
+	 * 
+	 * @param url  server's ip 
+	 * @param user  login name 
+	 * @param password login password
+	 * @return
+	 * @throws IOException
+	 */
 	public String topMonitor(String url,String user,String password) throws IOException{
 		String key = pool.rewardConnectionKey(url, user, password);
 		IConnectable lc =  pool.borrowObject(key);

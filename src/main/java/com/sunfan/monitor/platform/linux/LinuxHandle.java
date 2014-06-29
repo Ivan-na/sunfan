@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import ch.qos.logback.classic.Logger;
 
