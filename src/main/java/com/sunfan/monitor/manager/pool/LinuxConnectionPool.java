@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.sunfan.monitor.manager.IConnectionPool;
 import com.sunfan.monitor.platform.IConnectable;
+import com.sunfan.monitor.platform.linux.LinuxConnect;
 
 @Component
 public class LinuxConnectionPool implements IConnectionPool {
@@ -46,6 +47,22 @@ public class LinuxConnectionPool implements IConnectionPool {
 			throw new IllegalArgumentException("key not found:" + key);
 		}
 		return connectionPool.get(key);
+	}
+	
+	public IConnectable borrowObject(String url,String user,String password){
+		String key = this.rewardConnectionKey(url, user, password);
+		if (!isExist(key)){
+			try {
+				LinuxConnect connect = new LinuxConnect(url, user, password);
+				connectionPool.put(key, connect);
+				return connect;
+			} catch (IOException e) {
+				throw new RuntimeException("异常"+url,e);
+			}
+		}else {
+			return connectionPool.get(key);
+		}
+		
 	}
 
 	/**

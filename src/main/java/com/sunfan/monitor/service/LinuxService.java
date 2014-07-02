@@ -28,12 +28,10 @@ public class LinuxService {
 	 * @throws IOException
 	 */
 	public String topMonitor(String url,String user,String password) throws IOException{
-		String key = pool.rewardConnectionKey(url, user, password);
-		IConnectable lc =  pool.borrowObject(key);
-		if(lc==null){
-			lc = new LinuxConnect(url, user, password);
-		}
-		return new LinuxHandle(lc.getConnection()).executeCommand(defaultTopComand);
+		IConnectable lc =  pool.borrowObject(url,user,password);
+		String result = new LinuxHandle(lc.getConnection()).executeCommand(defaultTopComand);
+		pool.remove(lc);
+		return result;
 	}
 
 	public LinuxConnectionPool getPool() {

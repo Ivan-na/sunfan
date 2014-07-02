@@ -18,7 +18,7 @@ public class LinuxMonitorAction {
 	public String TopAction() {
 		String res = null;
 		try {
-			res = linuxService.topMonitor("192.168.1.9", "root", "root");
+			res = linuxService.topMonitor("127.0.0.1", "zhangsn", "1");
 		} catch (IOException e) {
 			logger.error("打开机器异常:{}","192.168.1.9",e);
 		}

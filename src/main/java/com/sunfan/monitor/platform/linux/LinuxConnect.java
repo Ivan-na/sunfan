@@ -12,7 +12,7 @@ import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.ConnectionInfo;
 import com.trilead.ssh2.ConnectionMonitor;
 
-public class LinuxConnect implements IConnectable ,Closeable{
+public class LinuxConnect implements IConnectable, Closeable {
 	Logger logger = (Logger) LoggerFactory.getLogger(LinuxConnect.class);
 	private String url, user, password;
 	private Connection connection;
@@ -23,13 +23,13 @@ public class LinuxConnect implements IConnectable ,Closeable{
 	 * @param url
 	 * @param user
 	 * @param password
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public LinuxConnect(String url, String user, String password) throws IOException {
 		this.url = url;
 		this.user = user;
 		this.password = password;
-		this.connection=createConnection();
+		this.connection = createConnection();
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class LinuxConnect implements IConnectable ,Closeable{
 		connection = new Connection(url);
 		ConnectionInfo info = connection.connect(); // establish connection
 		if (false == connection.authenticateWithPassword(user, password))
-			logger.error("connect server failed,please check the username and password. "+this.user+" "+this.password);
+			logger.error("connect server failed,please check the username and password. " + this.user + " " + this.password);
 		return connection;
 	}
 
@@ -52,8 +52,8 @@ public class LinuxConnect implements IConnectable ,Closeable{
 	 */
 	@Override
 	public void close() throws IOException {
-		if(connection!=null)
-		    this.connection.close();
+		if (connection != null)
+			this.connection.close();
 	}
 
 	public String getUrl() {
@@ -87,8 +87,5 @@ public class LinuxConnect implements IConnectable ,Closeable{
 	public void setConnection(Connection connection) {
 		this.connection = connection;
 	}
-	
-	
-
 
 }
