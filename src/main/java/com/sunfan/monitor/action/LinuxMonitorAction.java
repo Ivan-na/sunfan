@@ -1,44 +1,32 @@
 package com.sunfan.monitor.action;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import ch.qos.logback.classic.Logger;
-
 import com.sunfan.monitor.service.LinuxService;
-import com.sunfan.monitor.util.PrintStackTraceUtil;
 
 public class LinuxMonitorAction {
-	Logger logger = (Logger)LoggerFactory.getLogger(LinuxMonitorAction.class);
-	@Autowired
-	LinuxService linuxService;
 	
-	public String TopAction(){
-		String res =null;
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
+	@Autowired
+	private LinuxService linuxService;
+
+	public String TopAction() {
+		String res = null;
 		try {
-			res = linuxService.topMonitor("192.168.1.9", "root", "root");
+			res = linuxService.topMonitor("127.0.0.1", "zhangsn", "1");
 		} catch (IOException e) {
-             logger.error(PrintStackTraceUtil.printStackTrace(e));
+			logger.error("打开机器异常:{}","192.168.1.9",e);
 		}
-		if(res==null){
-			res="TopAction execute fail";
+		if (res == null) {
+			res = "TopAction execute fail";
 		}
 		return res;
-		
-	}
 
-	public LinuxService getLinuxService() {
-		return linuxService;
 	}
-
-	public void setLinuxService(LinuxService linuxService) {
-		this.linuxService = linuxService;
-	}
-	
-	
 
 }

@@ -5,39 +5,53 @@
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sunfan Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	
 	<dependencies>
+	
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.4</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.jvnet.hudson</groupId>
 			<artifactId>trilead-ssh2</artifactId>
 			<version>build212-hudson-6</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.2</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.0.5.RELEASE</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.0.5.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>7.0</version>
 		</dependency>
 
-
 	</dependencies>
+	
 	<build>
+	
 		<finalName>sunfan</finalName>
+		
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -49,5 +63,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
 	</build>
+	
 </project>
