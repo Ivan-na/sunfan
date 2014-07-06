@@ -9,21 +9,21 @@ import org.junit.Test;
 
 import com.sunfan.monitor.manager.pool.LinuxConnectionPool;
 import com.sunfan.monitor.platform.IConnectable;
-import com.sunfan.monitor.platform.linux.LinuxConnect;
-import com.sunfan.monitor.platform.linux.LinuxHandle;
+import com.sunfan.monitor.platform.linux.LinuxConnection;
+import com.sunfan.monitor.platform.linux.LinuxSessionHandle;
 import com.trilead.ssh2.Connection;
 
 public class LinuxConnectionPoolTest {
 	LinuxConnectionPool pool;
-	LinuxConnect lin1,lin2,lin3;
+	LinuxConnection lin1,lin2,lin3;
 	Connection con1,con2;
-	LinuxHandle hanle ;
+	LinuxSessionHandle hanle ;
 	@Before
 	public void setUp() throws Exception {
 	   pool = new LinuxConnectionPool();
-	   lin1 = new LinuxConnect("192.168.1.9", "root", "root");
-	   lin2 = new LinuxConnect("192.168.1.9", "sunfan", "abcd1234");
-	   lin3 = new LinuxConnect("192.168.1.9", "sunfan", "abcd1234");
+	   lin1 = new LinuxConnection("192.168.1.9", "root", "root");
+	   lin2 = new LinuxConnection("192.168.1.9", "sunfan", "abcd1234");
+	   lin3 = new LinuxConnection("192.168.1.9", "sunfan", "abcd1234");
 	}
 
 

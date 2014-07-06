@@ -10,16 +10,17 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import com.sunfan.monitor.service.LinuxService;
 
 public class LinuxServiceTest {
-	LinuxService service;
-	@Before
-	public void setUp() throws Exception {
-	}
+	BeanFactory factory = new FileSystemXmlApplicationContext("src/main/webapp/WEB-INF/springMVC-servlet.xml");  
+	LinuxService service = (LinuxService)factory.getBean("linuxService");
 
 	@Test
 	public void testMonitor() throws IOException {
-        BeanFactory factory = new FileSystemXmlApplicationContext("src/main/webapp/WEB-INF/springMVC-servlet.xml");  
-        service = (LinuxService)factory.getBean("linuxService");
 		String res = service.topMonitor("192.168.1.9", "root", "root");
+		System.out.println(res);
+	}
+	@Test
+	public void testExecuteCommand() throws IOException{
+		String res = service.cpuMonitor("192.168.1.9", "root", "root");
 		System.out.println(res);
 	}
 

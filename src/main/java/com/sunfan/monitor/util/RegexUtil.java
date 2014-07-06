@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class RegexUtil {
 	
-	public List<String> matchRegex(String text,String regex){
+	public static List<String> matchRegex(String text,String regex){
 		List<String> res= new ArrayList<String>();
 		Pattern patern = Pattern.compile(regex);
 		Matcher matcher = patern.matcher(text);
