@@ -16,12 +16,10 @@ public class MemoryInfoUtil extends EntityBaseUtil{
 	 * @return
 	 */
 	public MemoryInfo freeResultTransferMemoryInfoObject(String result){
-		
-		String[] strs = result.split("\r\n");
-		List<String[]> resList = new ArrayList<String[]>();
-		for(String s :strs) 
-			resList.add(s.split("\\s{1,}"));
-		 return transfer(resList);
+		List<String> resList = super.transferList(result);
+		List<String> contentList = super.removeResultHead(resList,"total");
+		List<String[]> contentArrayList = super.transferArrayOfList(contentList);
+		return transfer(contentArrayList);
 	}
 	
 	private MemoryInfo transfer(List<String[]> resList) {

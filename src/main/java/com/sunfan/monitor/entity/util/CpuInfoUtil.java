@@ -16,14 +16,10 @@ public class CpuInfoUtil extends EntityBaseUtil{
 	 * @return  List<CpuInfo>
 	 */
 	public List<CpuInfo> mpstatResultTransferCpuObject(String result){
-		String[] strs= result.split("\r\n"); //remove header info
-		List<String[]> resultList =new ArrayList<String[]>();
-		for(String s:strs){
-			if(s.contains(":")){
-				resultList.add(s.split("\\s{1,}"));// spilt blackspace in many times
-			}
-		}
-		return this.transfer(resultList);
+		List<String> resList = super.transferList(result);
+		List<String> contentList =  super.removeResultHead(resList, "usr");
+		List<String[]> contentArrayList = super.transferArrayOfList(contentList);
+		return this.transfer(contentArrayList);
 	}
 	
 	
@@ -31,14 +27,14 @@ public class CpuInfoUtil extends EntityBaseUtil{
 	
 	/**
 	 * to transfer cpuInfo Object
-	 * @param orginInfo 
+	 * @param contentArrayList 
 	 * @return List<CpuInfo>
 	 */
-	private List<CpuInfo> transfer(List<String[]> orginInfo){
+	private List<CpuInfo> transfer(List<String[]> contentArrayList){
 		List<CpuInfo> cpuList= new ArrayList<CpuInfo>();
-		List<String> headList =Arrays.asList(orginInfo.get(0));
-		orginInfo.remove(0);
-		for(String[] info:orginInfo){
+		List<String> headList =Arrays.asList(contentArrayList.get(0));
+		contentArrayList.remove(0);
+		for(String[] info:contentArrayList){
 			CpuInfo cpuInfo = new CpuInfo();
 			cpuInfo.setTime(info[0]);
 			cpuInfo.setCpu(resolveValueByTagName(headList,info,"CPU"));

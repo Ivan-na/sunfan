@@ -13,11 +13,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sunfan.monitor.baseUtil.JsonMapper;
 import com.sunfan.monitor.controller.LinuxMonitorController;
-import com.sunfan.monitor.entity.MemoryInfo;
-import com.sunfan.monitor.entity.Swap;
 import com.sunfan.monitor.entity.util.CpuInfoUtil;
+import com.sunfan.monitor.entity.util.IOstatInfoUtil;
 import com.sunfan.monitor.entity.util.MemoryInfoUtil;
 import com.sunfan.monitor.manager.pool.LinuxConnectionPool;
 import com.sunfan.monitor.platform.linux.LinuxSessionHandle;
@@ -47,9 +45,11 @@ public class LinuxMonitorActionTest {
 		System.out.println(res);
 		
 	}
-	
-	
-	
+	@Test
+	public void testIOMonitor() {
+		String res = monitorAction.InputOutputMonitor();
+		System.out.println(res);
+	}
 	
 	
 	@Test 
@@ -104,6 +104,10 @@ public class LinuxMonitorActionTest {
 		@Bean
 		public MemoryInfoUtil memoryInfoUtil(){
 			return new MemoryInfoUtil();
+		}
+		@Bean
+		public IOstatInfoUtil iOstatInfoUtil(){
+			return new IOstatInfoUtil();
 		}
 	}
 
