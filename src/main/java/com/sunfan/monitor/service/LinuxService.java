@@ -14,7 +14,7 @@ public class LinuxService {
 	private  String defaultTopComand = "top -b -n 1";
 	private  String defaultMpstatComand = "mpstat -P ALL";
 	private  String defaultFreeCommand = "free -m";
-	private  String defaultIostatCommand = "iostat -d -m -x";
+	private  String defaultIostatCommand = "iostat -d -m";
 	@Autowired
 	private LinuxConnectionPool pool ;
 	@Autowired

@@ -5,6 +5,18 @@ import java.util.List;
 
 public class EntityBaseUtil {
 	
+	/**change String result to List<String> result by split "\r\n"
+	 * remove the content above flag 
+	 * to transfer List<String> ---> list<String[]> by .split("\\s{1,}")
+	 * @param result
+	 * @param flag
+	 * @return
+	 */
+	public List<String[]> transferListofStringArray(String result,String flag){
+		List<String> resList = this.transferList(result);
+		List<String> contentList = this.removeResultHead(resList,flag);
+		return this.transferArrayOfList(contentList);
+	}
 	
 	/**
 	 * change String result to List<String> result by split "\r\n"

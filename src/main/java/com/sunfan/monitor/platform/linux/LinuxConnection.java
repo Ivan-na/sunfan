@@ -27,7 +27,7 @@ public class LinuxConnection implements IConnectable, Closeable {
 	 * @param password
 	 * @throws IOException
 	 */
-	public LinuxConnection(String url, String user, String password) throws IOException {
+	public LinuxConnection(String url, String user, String password) throws IOException{
 		this.url = url;
 		this.user = user;
 		this.password = password;

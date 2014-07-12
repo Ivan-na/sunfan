@@ -10,6 +10,7 @@ package com.sunfan.monitor.entity;
  */
 public class IOstatInfo {
 	private String divice;       // sda
+	private String tps;       // tps
 	private String rrqm;         // rrqm/s
 	private String wrqm;          // wrqm/s
 	private String r;            // r/s 
@@ -106,6 +107,12 @@ public class IOstatInfo {
 	}
 	public void setUtil(String util) {
 		this.util = util;
+	}
+	public String getTps() {
+		return tps;
+	}
+	public void setTps(String tps) {
+		this.tps = tps;
 	}
 	
 	

@@ -57,7 +57,7 @@ public class LinuxConnectionPool implements IConnectionPool {
 				connectionPool.put(key, connect);
 				return connect;
 			} catch (IOException e) {
-				throw new RuntimeException("异常"+url,e);
+				throw new RuntimeException("connection error"+url,e);
 			}
 		}else {
 			return connectionPool.get(key);

@@ -15,9 +15,7 @@ public class IOstatInfoUtil extends EntityBaseUtil{
 	 * @param result List<IOstatInfo>
 	 */
 	public List<IOstatInfo> iostatResultTransferCpuObject(String result){
-		List<String> resList = super.transferList(result);
-		List<String> contentList = super.removeResultHead(resList,"Device");
-		List<String[]> contentArrayList = super.transferArrayOfList(contentList);
+		List<String[]> contentArrayList = super.transferListofStringArray(result,"Device");
 		return transfer(contentArrayList);
 	}
 
@@ -34,6 +32,7 @@ public class IOstatInfoUtil extends EntityBaseUtil{
 			IOstatInfo ioStatinfo = new IOstatInfo();
 			ioStatinfo.setDivice(info[0]);
 			ioStatinfo.setRrqm(resolveValueByTagName(head,info,"rrqm/s"));
+			ioStatinfo.setTps(resolveValueByTagName(head,info,"tps"));
 			ioStatinfo.setWrqm(resolveValueByTagName(head,info,"wrqm/s"));
 			ioStatinfo.setR(resolveValueByTagName(head,info,"r/s"));
 			ioStatinfo.setW(resolveValueByTagName(head,info,"w/s"));

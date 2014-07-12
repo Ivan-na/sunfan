@@ -16,9 +16,7 @@ public class MemoryInfoUtil extends EntityBaseUtil{
 	 * @return
 	 */
 	public MemoryInfo freeResultTransferMemoryInfoObject(String result){
-		List<String> resList = super.transferList(result);
-		List<String> contentList = super.removeResultHead(resList,"total");
-		List<String[]> contentArrayList = super.transferArrayOfList(contentList);
+		List<String[]> contentArrayList = super.transferListofStringArray(result,"total");
 		return transfer(contentArrayList);
 	}
 	

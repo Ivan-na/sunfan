@@ -34,46 +34,22 @@ public class LinuxMonitorActionTest {
 		System.out.println(monitorAction.systemSummaryMonitor());
 	}
 	
-	@Test
-	public void testCpuMonitor() {
-		String res = monitorAction.cpuMonitor();
-		System.out.println(res);
-	}
-	@Test
-	public void testMemoryMonitor() {
-		String res = monitorAction.memoryMonitor();
-		System.out.println(res);
-		
-	}
-	@Test
-	public void testIOMonitor() {
-		String res = monitorAction.InputOutputMonitor();
-		System.out.println(res);
-	}
-	
-	
-	@Test 
-	public void test() {
-		String result = monitorAction.cpuMonitor();
-		System.out.println(result);
-		
-		String[] strs= result.split("\r\n"); //remove header info
-		List<String[]> resultList =new ArrayList<String[]>();
-		for(String s:strs){
-			if(s.contains(":")){
-				resultList.add(s.split("\\s{1,}"));// spilt blackspace in many times
-			}
-		}
-		
-		List a =Arrays.asList(resultList.get(0));
-//		System.out.println(a.indexOf("05:07:46 PM    0    7.18    0.03    1.78    1.92    0.00    0.08    0.00    0.00   89.00"));
-		
-		System.out.println(1);
-	}
-	
-	
-	
-	
+//	@Test
+//	public void testCpuMonitor() {
+//		String res = monitorAction.cpuMonitor();
+//		System.out.println(res);
+//	}
+//	@Test
+//	public void testMemoryMonitor() {
+//		String res = monitorAction.memoryMonitor();
+//		System.out.println(res);
+//		
+//	}
+//	@Test
+//	public void testIOMonitor() {
+//		String res = monitorAction.InputOutputMonitor();
+//		System.out.println(res);
+//	}
 	
 	@Configuration
 	public static class BeanConfig{

@@ -1,21 +1,31 @@
 package com.sunfan.monitor.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sunfan.monitor.baseUtil.JsonMapper;
-import com.sunfan.monitor.entity.CpuInfo;
-import com.sunfan.monitor.entity.MemoryInfo;
+import com.sunfan.monitor.entity.User;
 import com.sunfan.monitor.entity.util.CpuInfoUtil;
 import com.sunfan.monitor.entity.util.IOstatInfoUtil;
 import com.sunfan.monitor.entity.util.MemoryInfoUtil;
 import com.sunfan.monitor.service.LinuxService;
-
-public class LinuxMonitorController {
+@Controller
+public class LinuxMonitorController{
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
@@ -26,13 +36,19 @@ public class LinuxMonitorController {
 	@Autowired
 	private MemoryInfoUtil menoryUtil;
 	@Autowired
-	private IOstatInfoUtil IOUtil;
+	private IOstatInfoUtil ioUtil;
+	
+	@RequestMapping("/")
+	public ModelAndView index() {
+		return new ModelAndView("/jsp/login/server_login.jsp");
+	}
+	
+	
 	public String systemSummaryMonitor() {
 		String res = null;
 		try {
 			res = linuxService.topMonitor("192.168.1.9", "root", "root");
 		} catch (IOException e) {
-			log.error("打开机器异常:{}","192.168.1.9",e);
 		}
 		return res;
 	}
@@ -41,13 +57,16 @@ public class LinuxMonitorController {
 	 * 
 	 * @return json result
 	 */
-	public String cpuMonitor() {
+	@RequestMapping("/cpu")
+	 @ResponseBody  
+	public String cpuMonitor(HttpServletRequest request) {
 		String res = null;
 		try {
-			res = linuxService.cpuMonitor("192.168.1.9", "root", "root");
+			User u = (User)request.getSession().getAttribute("sUser");
+			res = linuxService.cpuMonitor(u.getUrl(), u.getUsername(), u.getPassword());
 		    res = JsonMapper.toNonDefaultJson(cpuUtil.mpstatResultTransferCpuObject(res));
+		    System.out.println(res);
 		} catch (IOException e) {
-			log.error("打开机器异常:{}","192.168.1.9",e);
 		}
 		return res;
 	}
@@ -56,31 +75,39 @@ public class LinuxMonitorController {
 	 *  monitor memory by command "free -m" 
 	 * @return json result
 	 */
-	public String memoryMonitor() {
+	@RequestMapping("/memory")
+	 @ResponseBody  
+	public String memoryMonitor(HttpServletRequest request) {
 		String res = null;
 		try {
-			res = linuxService.memoryMonitor("192.168.1.9", "root", "root");
+			User u = (User)request.getSession().getAttribute("sUser");
+			res = linuxService.memoryMonitor(u.getUrl(), u.getUsername(), u.getPassword());
 		    res = JsonMapper.toNonDefaultJson(menoryUtil.freeResultTransferMemoryInfoObject(res));
+		    System.out.println(res);
 		} catch (IOException e) {
-			log.error("打开机器异常:{}","192.168.1.9",e);
 		}
 		return res;
 	}
 	
 	/**
-	 *  monitor IO by command "iostat -d -m -x";
+	 *  //monitor IO by command "iostat -d -m -x"; 
+	 *  monitor IO by command "iostat -d -m ";
 	 * @return json result
 	 */
-	public String InputOutputMonitor() {
+	@RequestMapping("/io")
+	 @ResponseBody  
+	public String InputOutputMonitor(HttpServletRequest request){
 		String res = null;
 		try {
-			res = linuxService.inputOutputMonitor("192.168.1.9", "root", "root");
-		    res = JsonMapper.toNonDefaultJson(IOUtil.iostatResultTransferCpuObject(res));
+			User u = (User)request.getSession().getAttribute("sUser");
+			res = linuxService.inputOutputMonitor(u.getUrl(), u.getUsername(), u.getPassword());
+		    res = JsonMapper.toNonDefaultJson(ioUtil.iostatResultTransferCpuObject(res));
+		    System.out.println(res);
 		} catch (IOException e) {
-			log.error("打开机器异常:{}","192.168.1.9",e);
 		}
 		return res;
 	}
+	
 
 	public LinuxService getLinuxService() {
 		return linuxService;
@@ -107,11 +134,11 @@ public class LinuxMonitorController {
 	}
 
 	public IOstatInfoUtil getIOUtil() {
-		return IOUtil;
+		return ioUtil;
 	}
 
 	public void setIOUtil(IOstatInfoUtil iOUtil) {
-		IOUtil = iOUtil;
+		ioUtil = iOUtil;
 	}
 	
 }

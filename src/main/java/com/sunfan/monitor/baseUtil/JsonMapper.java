@@ -22,7 +22,6 @@ import org.springframework.stereotype.Component;
  * 封装不同的输出风格, 使用不同的builder函数创建实例.
  * 
  */
-@Component
 public class JsonMapper {
 
 
