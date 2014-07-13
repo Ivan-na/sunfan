@@ -8,7 +8,11 @@ import org.springframework.stereotype.Component;
 import com.sunfan.monitor.manager.pool.LinuxConnectionPool;
 import com.sunfan.monitor.platform.IConnectable;
 import com.sunfan.monitor.platform.linux.LinuxSessionHandle;
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 @Component
 public class LinuxService {
 	private  String defaultTopComand = "top -b -n 1";

@@ -1,5 +1,9 @@
 package com.sunfan.monitor.entity;
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 public class User {
 	private String url;
 	private String username;

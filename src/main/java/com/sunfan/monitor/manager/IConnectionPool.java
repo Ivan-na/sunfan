@@ -3,7 +3,11 @@ package com.sunfan.monitor.manager;
 import java.io.IOException;
 
 import com.sunfan.monitor.platform.IConnectable;
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 public interface IConnectionPool {
 	
 	 public Boolean saveObject(IConnectable conn);

@@ -4,7 +4,11 @@ import java.io.Closeable;
 import java.io.IOException;
 
 import com.trilead.ssh2.Connection;
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 public interface IConnectable extends Closeable{
 	
 	public Connection getConnection();

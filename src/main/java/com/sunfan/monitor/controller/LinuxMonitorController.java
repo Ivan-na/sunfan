@@ -24,6 +24,13 @@ import com.sunfan.monitor.entity.util.CpuInfoUtil;
 import com.sunfan.monitor.entity.util.IOstatInfoUtil;
 import com.sunfan.monitor.entity.util.MemoryInfoUtil;
 import com.sunfan.monitor.service.LinuxService;
+
+
+/**
+ * 
+ * @author sunfan
+ *
+ */
 @Controller
 public class LinuxMonitorController{
 	

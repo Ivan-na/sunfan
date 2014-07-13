@@ -1,5 +1,9 @@
 package com.sunfan.monitor.entity;
-
+/**
+ * free -m
+ * @author sunfan
+ *
+ */
 public class MemoryInfo {
 	private String total;
 	private String used;

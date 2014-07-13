@@ -2,7 +2,11 @@ package com.sunfan.monitor.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 public class PrintStackTraceUtil{
 	
     /**

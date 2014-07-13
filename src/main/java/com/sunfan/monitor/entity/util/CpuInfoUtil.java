@@ -37,6 +37,8 @@ public class CpuInfoUtil extends EntityBaseUtil{
 			cpuInfo.setTime(info[0]);
 			cpuInfo.setCpu(resolveValueByTagName(headList,info,"CPU"));
 			cpuInfo.setUsr(resolveValueByTagName(headList,info,"%usr"));
+			if(cpuInfo.getUsr().equals(""))
+				cpuInfo.setUsr(resolveValueByTagName(headList,info,"%user"));
 			cpuInfo.setNice(resolveValueByTagName(headList,info,"%nice"));
 			cpuInfo.setSys(resolveValueByTagName(headList,info,"%sys"));
 			cpuInfo.setIowait(resolveValueByTagName(headList,info,"%iowait"));

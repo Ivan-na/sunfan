@@ -13,7 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sunfan.monitor.entity.User;
 import com.sunfan.monitor.service.LinuxService;
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 @Controller
 public class LoginController {
 	private Logger log = LoggerFactory.getLogger(getClass());

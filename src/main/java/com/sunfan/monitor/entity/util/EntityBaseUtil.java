@@ -2,7 +2,11 @@ package com.sunfan.monitor.entity.util;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 public class EntityBaseUtil {
 	
 	/**change String result to List<String> result by split "\r\n"

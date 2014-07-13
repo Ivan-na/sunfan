@@ -118,10 +118,5 @@ pageContext.setAttribute("basePath",basePath);
 		<p>Time between updates: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds</p>
 
 	</div>
-
-	<div id="footer">
-		Copyright &copy; 2007 - 2014 travelsky sunfan
-	</div>
-
 </body>
 </html>

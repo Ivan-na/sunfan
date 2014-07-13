@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 public class RegexUtil {
 	
 	public static List<String> matchRegex(String text,String regex){

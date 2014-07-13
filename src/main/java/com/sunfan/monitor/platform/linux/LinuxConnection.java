@@ -13,7 +13,11 @@ import com.sunfan.monitor.platform.IConnectable;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.ConnectionInfo;
 import com.trilead.ssh2.ConnectionMonitor;
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 public class LinuxConnection implements IConnectable, Closeable {
 	Logger log = LoggerFactory.getLogger(LinuxConnection.class);
 	private String url, user, password;

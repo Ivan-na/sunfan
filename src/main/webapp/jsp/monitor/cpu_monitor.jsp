@@ -119,9 +119,5 @@ pageContext.setAttribute("basePath",basePath);
 
 	</div>
 
-	<div id="footer">
-		Copyright &copy; 2007 - 2014 travelsky sunfan
-	</div>
-
 </body>
 </html>

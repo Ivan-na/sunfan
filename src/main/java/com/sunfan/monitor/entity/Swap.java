@@ -1,5 +1,9 @@
 package com.sunfan.monitor.entity;
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 public class Swap {
 	private String total;
 	private String used;

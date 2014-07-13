@@ -7,6 +7,11 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.sunfan.monitor.entity.IOstatInfo;
+/**
+ * 
+ * @author sunfan
+ *
+ */
 @Component
 public class IOstatInfoUtil extends EntityBaseUtil{
 	

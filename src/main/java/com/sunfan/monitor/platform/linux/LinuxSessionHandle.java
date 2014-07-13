@@ -14,6 +14,11 @@ import com.sunfan.monitor.platform.IMonitorable;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
 import com.trilead.ssh2.StreamGobbler;
+/**
+ * 
+ * @author sunfan
+ *
+ */
 @Component
 public class LinuxSessionHandle implements IMonitorable,Closeable{
 	Logger logger = LoggerFactory.getLogger(LinuxSessionHandle.class);

@@ -11,7 +11,11 @@ import org.springframework.stereotype.Component;
 import com.sunfan.monitor.manager.IConnectionPool;
 import com.sunfan.monitor.platform.IConnectable;
 import com.sunfan.monitor.platform.linux.LinuxConnection;
-
+/**
+ * 
+ * @author sunfan
+ *
+ */
 @Component
 public class LinuxConnectionPool implements IConnectionPool {
 

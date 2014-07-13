@@ -8,6 +8,11 @@ import org.springframework.stereotype.Component;
 
 import com.sunfan.monitor.entity.MemoryInfo;
 import com.sunfan.monitor.entity.Swap;
+/**
+ * 
+ * @author sunfan
+ *
+ */
 @Component
 public class MemoryInfoUtil extends EntityBaseUtil{
 	/**
