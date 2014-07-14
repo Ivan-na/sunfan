@@ -9,9 +9,9 @@ pageContext.setAttribute("basePath",basePath);
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Memory_Monitor</title>
-	<link href="${pageScope.basePath}js/flot/examples/examples.css" rel="stylesheet" type="text/css">
-	<script language="javascript" type="text/javascript" src="${pageScope.basePath}js/flot/jquery.js"></script>
-	<script language="javascript" type="text/javascript" src="${pageScope.basePath}js/flot/jquery.flot.js"></script>
+	<link href="${pageScope.basePath}/resource/js/flot/examples/examples.css" rel="stylesheet" type="text/css">
+	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.flot.js"></script>
 	<script type="text/javascript">
 	function queryMemory(){
         var user={url:'',username:'',password:''};

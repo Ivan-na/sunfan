@@ -12,7 +12,7 @@ pageContext.setAttribute("basePath",basePath);
     <title>Monitor</title>
   </head>
   
-<script language="javascript" type="text/javascript" src="${pageScope.basePath}js/flot/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
   <body>
     <div>
     <form id="form1" action="" >

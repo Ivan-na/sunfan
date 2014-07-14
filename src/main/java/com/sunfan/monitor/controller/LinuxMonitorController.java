@@ -53,10 +53,10 @@ public class LinuxMonitorController{
 	
 	public String systemSummaryMonitor() {
 		String res = null;
-		try {
-			res = linuxService.topMonitor("192.168.1.9", "root", "root");
-		} catch (IOException e) {
-		}
+//		try {
+////			res = linuxService.topMonitor("192.168.1.9", "root", "root");
+//		} catch (IOException e) {
+//		}
 		return res;
 	}
 	

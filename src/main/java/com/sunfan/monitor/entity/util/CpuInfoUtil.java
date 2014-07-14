@@ -16,7 +16,7 @@ public class CpuInfoUtil extends EntityBaseUtil{
 	 * @return  List<CpuInfo>
 	 */
 	public List<CpuInfo> mpstatResultTransferCpuObject(String result){
-		List<String[]> contentArrayList = super.transferListofStringArray(result,"usr");
+		List<String[]> contentArrayList = super.transferListofStringArray(result,"nice");
 		return this.transfer(contentArrayList);
 	}
 	

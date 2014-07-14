@@ -10,8 +10,8 @@ pageContext.setAttribute("basePath",basePath);
   <head>
     <title>monitors util</title>
   </head>
-          <link href="${pageScope.basePath}js/flot/examples/examples.css" rel="stylesheet" type="text/css">
-          <script language="javascript" type="text/javascript" src="${pageScope.basePath}js/flot/jquery.js"></script>
+          <link href="${pageScope.basePath}/resource/js/flot/examples/examples.css" rel="stylesheet" type="text/css">
+          <script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
   <body id="content">
   <h2>Hello,${sessionScope.sUser.username}.</h2>
   <br><br><br>

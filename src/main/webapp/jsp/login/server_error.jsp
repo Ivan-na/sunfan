@@ -11,7 +11,7 @@ pageContext.setAttribute("basePath",basePath);
     <title>error</title>
   </head>
   
-<script language="javascript" type="text/javascript" src="${pageScope.basePath}js/flot/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
   <body>
   error info : ${error}
   <br>
