@@ -2,7 +2,7 @@
 
 <%    
 String path = request.getContextPath();    
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";    
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;    
 pageContext.setAttribute("basePath",basePath);    
 %>    
 
@@ -11,20 +11,20 @@ pageContext.setAttribute("basePath",basePath);
   <head>
     <title>Monitor</title>
   </head>
-  
+            <link href="${pageScope.basePath}/resource/js/flot/examples/examples.css" rel="stylesheet" type="text/css">
 <script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
   <body>
     <div>
     <form id="form1" action="" >
-            <input type="text" name="url" id="url"><br>
-            <input type="text" name="username" id="username"><br>
-            <input type="text" name="password" id="password"><br>
-            <input type="button" value="submit" id="but1">
+          Server_ip  <input type="text" name="url" id="url"><br>
+          Username <input type="text" name="username" id="username"><br>
+          Password  <input type="text" name="password" id="password"><br>
+            <input type="button" value="login" id="but1">
     </form>
     </div>
    <script type="text/javascript">
     $('#but1').click(function(){
-    $('#form1').attr({'action':"${pageScope.basePath}serverLogin",'method':"post"}).submit();
+    $('#form1').attr({'action':"${pageScope.basePath}/serverLogin",'method':"post"}).submit();
     });
     </script>
 </html>

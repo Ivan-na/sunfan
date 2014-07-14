@@ -8,43 +8,41 @@ pageContext.setAttribute("basePath",basePath);
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Flot Examples: Real-time updates</title>
-	<link href="${pageScope.basePath}js/flot/examples/examples.css" rel="stylesheet" type="text/css">
-	<script language="javascript" type="text/javascript" src="${pageScope.basePath}js/flot/jquery.js"></script>
-	<script language="javascript" type="text/javascript" src="${pageScope.basePath}js/flot/jquery.flot.js"></script>
+	<title>Memory_Monitor</title>
+	<link href="${pageScope.basePath}/resource/js/flot/examples/examples.css" rel="stylesheet" type="text/css">
+	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.flot.js"></script>
 	<script type="text/javascript">
-
+	function queryMemory(){
+        var user={url:'',username:'',password:''};
+        var res;
+        $.ajax({
+            url:"${pageScope.basePath}memory",
+            type:"post", 
+            data:user,   
+            async:false,
+            success:function(reData){ 
+            var objs = jQuery.parseJSON(reData);  
+            res = parseFloat(objs.used)*Math.random();
+            }
+        });
+        return res;
+    }  
+    
 	$(function() {
-
-		// We use an inline data source in the example, usually data would
-		// be fetched from a server
-
 		var data = [],
-			totalPoints = 300;
-
+			totalPoints = 100;
+		for(var i=0;i<totalPoints-1;i++){
+			data[i]=-100;
+		}
 		function getRandomData() {
 
 			if (data.length > 0)
 				data = data.slice(1);
-
-			// Do a random walk
-
 			while (data.length < totalPoints) {
-
-				var prev = data.length > 0 ? data[data.length - 1] : 50,
-					y = prev + Math.random() * 10 - 5;
-
-				if (y < 0) {
-					y = 0;
-				} else if (y > 100) {
-					y = 100;
-				}
-
+				var y = queryMemory();  
 				data.push(y);
 			}
-
-			// Zip the generated y values with the x values
-
 			var res = [];
 			for (var i = 0; i < data.length; ++i) {
 				res.push([i, data[i]])
@@ -55,15 +53,15 @@ pageContext.setAttribute("basePath",basePath);
 
 		// Set up the control widget
 
-		var updateInterval = 30;
+		var updateInterval = 2000;
 		$("#updateInterval").val(updateInterval).change(function () {
 			var v = $(this).val();
 			if (v && !isNaN(+v)) {
 				updateInterval = +v;
 				if (updateInterval < 1) {
 					updateInterval = 1;
-				} else if (updateInterval > 2000) {
-					updateInterval = 2000;
+				} else if (updateInterval > 60*1000) {
+					updateInterval = 60*1000;
 				}
 				$(this).val("" + updateInterval);
 			}
@@ -75,15 +73,14 @@ pageContext.setAttribute("basePath",basePath);
 			},
 			yaxis: {
 				min: 0,
-				max: 100
+				max: 8000
 			},
 			xaxis: {
-				show: false
+				show: totalPoints
 			}
 		});
 
 		function update() {
-
 			plot.setData([getRandomData()]);
 
 			// Since the axes don't change, we don't need to call plot.setupGrid()
@@ -98,13 +95,18 @@ pageContext.setAttribute("basePath",basePath);
 
 		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
 	});
+	
+	
+    
+   
+
 
 	</script>
 </head>
 <body>
 
 	<div id="header">
-		<h2>Real-time updates</h2>
+		<h2>Memory : Used</h2>
 	</div>
 
 	<div id="content">
@@ -118,10 +120,5 @@ pageContext.setAttribute("basePath",basePath);
 		<p>Time between updates: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds</p>
 
 	</div>
-
-	<div id="footer">
-		Copyright &copy; 2007 - 2014 IOLA and Ole Laursen
-	</div>
-
 </body>
 </html>

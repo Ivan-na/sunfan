@@ -8,22 +8,22 @@ pageContext.setAttribute("basePath",basePath);
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>CPU_Monitor</title>
+	<title>IO_Monitor</title>
 	<link href="${pageScope.basePath}/resource/js/flot/examples/examples.css" rel="stylesheet" type="text/css">
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.flot.js"></script>
 	<script type="text/javascript">
-	function queryCpu(){
+	function queryIO(){
         var user={url:'',username:'',password:''};
         var res;
         $.ajax({
-            url:"${pageScope.basePath}cpu",
+            url:"${pageScope.basePath}io",
             type:"post", 
             data:user,   
             async:false,
             success:function(reData){ 
             var objs = jQuery.parseJSON(reData);  
-            res = parseFloat(objs[0].usr)+parseFloat(objs[0].sys); 
+            res = parseFloat(objs[0].tps); 
             }
         });
         return res;
@@ -32,13 +32,15 @@ pageContext.setAttribute("basePath",basePath);
 	$(function() {
 		var data = [],
 			totalPoints = 100;
-
+		for(var i=0;i<totalPoints-1;i++){
+			data[i]=-100;
+		}
 		function getRandomData() {
 
 			if (data.length > 0)
 				data = data.slice(1);
 			while (data.length < totalPoints) {
-				var y = queryCpu()*Math.random();  
+				var y = queryIO()*Math.random();
 				data.push(y);
 			}
 			var res = [];
@@ -70,8 +72,8 @@ pageContext.setAttribute("basePath",basePath);
 				shadowSize: 0	// Drawing is faster without shadows
 			},
 			yaxis: {
-				min: -10,
-				max: 100
+				min: 0,
+				max: 20
 			},
 			xaxis: {
 				show: totalPoints
@@ -104,7 +106,7 @@ pageContext.setAttribute("basePath",basePath);
 <body>
 
 	<div id="header">
-		<h2>CPU : Usr%+Sys%</h2>
+		<h2>IO : tps</h2>
 	</div>
 
 	<div id="content">
