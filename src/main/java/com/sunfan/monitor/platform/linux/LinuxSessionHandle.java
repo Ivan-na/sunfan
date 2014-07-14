@@ -69,10 +69,7 @@ public class LinuxSessionHandle implements IMonitorable,Closeable{
 	 */
 	@Override
 	public void close() throws IOException {
-		if (this.session != null)
-			this.session.close();
+		if (this.session != null) this.session.close();
 	}
-	
-	
 
 }

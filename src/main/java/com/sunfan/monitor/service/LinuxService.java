@@ -78,38 +78,5 @@ public class LinuxService {
 		IConnectable lc =  pool.borrowObject(url,user,password);
 		return handle.executeCommand(lc.getConnection(),command);
 	}
-	
-	
-
-	public LinuxConnectionPool getPool() {
-		return pool;
-	}
-	public void setPool(LinuxConnectionPool pool) {
-		this.pool = pool;
-	}
-	
-	public String getDefaultMpstatComand() {
-		return defaultMpstatComand;
-	}
-
-	public void setDefaultMpstatComand(String defaultMpstatComand) {
-		this.defaultMpstatComand = defaultMpstatComand;
-	}
-
-	public LinuxSessionHandle getHandle() {
-		return handle;
-	}
-
-	public void setHandle(LinuxSessionHandle handle) {
-		this.handle = handle;
-	}
-
-	public String getDefaultTopComand() {
-		return defaultTopComand;
-	}
-
-	public void setDefaultTopComand(String defaultTopComand) {
-		this.defaultTopComand = defaultTopComand;
-	}
 
 }

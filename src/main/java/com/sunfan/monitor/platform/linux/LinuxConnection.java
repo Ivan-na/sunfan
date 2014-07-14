@@ -2,9 +2,6 @@ package com.sunfan.monitor.platform.linux;
 
 import java.io.Closeable;
 import java.io.IOException;
-import java.rmi.Remote;
-
-import javax.print.CancelablePrintJob;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import com.sunfan.monitor.platform.IConnectable;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.ConnectionInfo;
-import com.trilead.ssh2.ConnectionMonitor;
 /**
  * 
  * @author sunfan

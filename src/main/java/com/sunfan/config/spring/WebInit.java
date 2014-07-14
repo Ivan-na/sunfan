@@ -15,11 +15,10 @@ public class WebInit implements WebApplicationInitializer {
 	public void onStartup(ServletContext sc) throws ServletException {
 		// Create the 'root' Spring application context
 		AnnotationConfigWebApplicationContext application = new AnnotationConfigWebApplicationContext();
-		application.scan("com.sunfan.*");
+		application.scan("com.sunfan.config.spring");
 		// Manages the lifecycle of the root application context
 		sc.addListener(new ContextLoaderListener(application));
 		AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
-		webContext.setConfigLocation("com.sunfan.*");
 		ServletRegistration.Dynamic appServlet = sc.addServlet("appServlet", new DispatcherServlet(webContext));
 		appServlet.setLoadOnStartup(1);
 		appServlet.addMapping("/");
