@@ -59,7 +59,7 @@ public class LinuxMonitorController {
 			res = JsonMapper.toNonDefaultJson(cpuUtil.mpstatResultTransferCpuObject(res));
 			System.out.println(res);
 		} catch (IOException e) {
-			log.error("cpu异常",e);
+			log.error("cpu数据获取异常",e);
 		}
 		return res;
 	}
@@ -78,7 +78,7 @@ public class LinuxMonitorController {
 			res = JsonMapper.toNonDefaultJson(menoryUtil.freeResultTransferMemoryInfoObject(res));
 			System.out.println(res);
 		} catch (IOException e) {
-			
+			log.error("内存数据获取异常",e);
 		}
 		return res;
 	}
@@ -98,6 +98,21 @@ public class LinuxMonitorController {
 			res = JsonMapper.toNonDefaultJson(ioUtil.iostatResultTransferCpuObject(res));
 			System.out.println(res);
 		} catch (IOException e) {
+			log.error("磁盘数据获取异常",e);
+		}
+		return res;
+	}
+	
+	@RequestMapping("/io_x")
+	public String InputOutputMonitor_x(HttpServletRequest request) {
+		String res = null;
+		try {
+			User u = (User) request.getSession().getAttribute("sUser");
+			res = linuxService.inputOutputMonitor_x(u.getUrl(), u.getUsername(), u.getPassword());
+			res = JsonMapper.toNonDefaultJson(ioUtil.iostatResultTransferCpuObject(res));
+			System.out.println(res);
+		} catch (IOException e) {
+			log.error("磁盘数据获取异常",e);
 		}
 		return res;
 	}

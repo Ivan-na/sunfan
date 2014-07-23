@@ -18,7 +18,8 @@ public class LinuxService {
 	private  String defaultTopComand = "top -b -n 1";
 	private  String defaultMpstatComand = "mpstat -P ALL";
 	private  String defaultFreeCommand = "free -m";
-	private  String defaultIostatCommand = "iostat -d -m";
+	private  String defaultIostatCommand = "iostat -d";
+	private  String defaultIostatCommand_x = "iostat -d -x";
 	@Autowired
 	private LinuxConnectionPool pool ;
 	@Autowired
@@ -63,7 +64,7 @@ public class LinuxService {
 	}
 	
 	/**
-	 * execute default command "free -m" to get memory performance 
+	 * execute default command "iostat -d" to get memory performance 
 	 * @param url
 	 * @param user
 	 * @param password
@@ -72,6 +73,18 @@ public class LinuxService {
 	 */
 	public String inputOutputMonitor(String url,String user,String password) throws IOException{
 		return this.executeCommand(url, user, password, defaultIostatCommand);
+	}
+	
+	/**
+	 * execute default command "iostat -d - x" to get memory performance 
+	 * @param url
+	 * @param user
+	 * @param password
+	 * @return
+	 * @throws IOException
+	 */
+	public String inputOutputMonitor_x(String url,String user,String password) throws IOException{
+		return this.executeCommand(url, user, password, defaultIostatCommand_x);
 	}
 	
 	public String executeCommand(String url,String user,String password,String command) throws IOException{

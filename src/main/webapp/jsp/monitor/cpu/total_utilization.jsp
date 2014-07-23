@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
 <%    
 String path = request.getContextPath();    
@@ -8,7 +8,7 @@ pageContext.setAttribute("basePath",basePath);
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>CPU_Monitor</title>
+	<title>Cpus_utilization</title>
 	<link href="${pageScope.basePath}/resource/js/flot/examples/examples.css" rel="stylesheet" type="text/css">
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.flot.js"></script>
@@ -41,7 +41,7 @@ pageContext.setAttribute("basePath",basePath);
 				data = data.slice(1);
 
 			while (data.length < totalPoints) {
-				var y = queryCpu()*Math.random();  
+				var y = queryCpu();  
 				data.push(y);
 			}
 			var res = [];
@@ -107,7 +107,7 @@ pageContext.setAttribute("basePath",basePath);
 <body>
 
 	<div id="header">
-		<h2>CPU : Usr%+Sys%</h2>
+		<h3>所有CPU的内核外核使用率</h3>
 	</div>
 
 	<div id="content">
@@ -115,10 +115,10 @@ pageContext.setAttribute("basePath",basePath);
 		<div class="demo-container">
 			<div id="placeholder" class="demo-placeholder"></div>
 		</div>
-
-		<p>You can update a chart periodically to get a real-time effect by using a timer to insert the new data in the plot and redraw it.</p>
-
-		<p>Time between updates: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds</p>
+		<b>X轴表示是CPU使用率</b><br>
+		<b>Y轴表示最近第N次的采集</b><br>
+        <b>如果总体占有率高于80%（参考值）则可能存在CPU资源不足</b>
+		<p>采集间隔: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> 毫秒（建议大于5000）</p>
 
 	</div>
 

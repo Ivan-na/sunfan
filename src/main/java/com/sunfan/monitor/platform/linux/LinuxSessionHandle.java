@@ -30,7 +30,7 @@ public class LinuxSessionHandle implements IMonitorable,Closeable{
 	 * @return String 
 	 * @throws IOException 
 	 */
-	public synchronized String executeCommand(Connection conn,String command) throws IOException {
+	public  String executeCommand(Connection conn,String command) throws IOException {
 		String str="";
 		try {
 		    session = conn.openSession();

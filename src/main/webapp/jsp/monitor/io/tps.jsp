@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
 <%    
 String path = request.getContextPath();    
@@ -8,22 +8,26 @@ pageContext.setAttribute("basePath",basePath);
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>IO_Monitor</title>
+	<title>io_tps</title>
 	<link href="${pageScope.basePath}/resource/js/flot/examples/examples.css" rel="stylesheet" type="text/css">
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.flot.js"></script>
 	<script type="text/javascript">
 	function queryIO(){
         var user={url:'',username:'',password:''};
-        var res;
+        var res=0;
         $.ajax({
             url:"${pageScope.basePath}io",
             type:"post", 
             data:user,   
             async:false,
             success:function(reData){ 
-            var objs = jQuery.parseJSON(reData);  
-            res = parseFloat(objs[0].tps); 
+            var objs = jQuery.parseJSON(reData); 
+            
+            $.each(objs, function(i, n) {//遍历所有硬盘的读写
+                res+=parseFloat(n.tps);
+            });
+//             res = parseFloat(objs[0].tps); 
             }
         });
         return res;
@@ -40,7 +44,7 @@ pageContext.setAttribute("basePath",basePath);
 			if (data.length > 0)
 				data = data.slice(1);
 			while (data.length < totalPoints) {
-				var y = queryIO()*Math.random();
+				var y = queryIO();
 				data.push(y);
 			}
 			var res = [];
@@ -73,7 +77,7 @@ pageContext.setAttribute("basePath",basePath);
 			},
 			yaxis: {
 				min: 0,
-				max: 20
+				max: 100
 			},
 			xaxis: {
 				show: totalPoints
@@ -106,7 +110,7 @@ pageContext.setAttribute("basePath",basePath);
 <body>
 
 	<div id="header">
-		<h2>IO : tps</h2>
+		<h3>IO : tps</h3>
 	</div>
 
 	<div id="content">
@@ -114,10 +118,9 @@ pageContext.setAttribute("basePath",basePath);
 		<div class="demo-container">
 			<div id="placeholder" class="demo-placeholder"></div>
 		</div>
-
-		<p>You can update a chart periodically to get a real-time effect by using a timer to insert the new data in the plot and redraw it.</p>
-
-		<p>Time between updates: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds</p>
+		<b>X轴表示是每秒磁盘事务数</b><br>
+		<b>Y轴表示最近第N次的采集</b>
+			<p>采集间隔: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> 毫秒（建议大于5000）</p>
 
 	</div>
 

@@ -8,22 +8,24 @@ pageContext.setAttribute("basePath",basePath);
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Memory_used</title>
+	<title>Io_total_util</title>
 	<link href="${pageScope.basePath}/resource/js/flot/examples/examples.css" rel="stylesheet" type="text/css">
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.flot.js"></script>
 	<script type="text/javascript">
-	function queryMemory(){
+	function queryIO(){
         var user={url:'',username:'',password:''};
-        var res;
+        var res=0;
         $.ajax({
-            url:"${pageScope.basePath}memory",
+            url:"${pageScope.basePath}io_x",
             type:"post", 
             data:user,   
             async:false,
             success:function(reData){ 
             var objs = jQuery.parseJSON(reData);  
-            res = parseFloat(objs.used);
+            $.each(objs, function(i, n) {//遍历所有硬盘的读写
+                res+=parseFloat(n.util);
+            });
             }
         });
         return res;
@@ -40,7 +42,7 @@ pageContext.setAttribute("basePath",basePath);
 			if (data.length > 0)
 				data = data.slice(1);
 			while (data.length < totalPoints) {
-				var y = queryMemory();  
+				var y = queryIO();
 				data.push(y);
 			}
 			var res = [];
@@ -73,7 +75,7 @@ pageContext.setAttribute("basePath",basePath);
 			},
 			yaxis: {
 				min: 0,
-				max: 12000
+				max: 100
 			},
 			xaxis: {
 				show: totalPoints
@@ -106,7 +108,7 @@ pageContext.setAttribute("basePath",basePath);
 <body>
 
 	<div id="header">
-		<h3>已使用的资源</h3>
+		<h3>磁盘操作的CPU占有率</h3>
 	</div>
 
 	<div id="content">
@@ -114,11 +116,15 @@ pageContext.setAttribute("basePath",basePath);
 		<div class="demo-container">
 			<div id="placeholder" class="demo-placeholder"></div>
 		</div>
-		<b>X轴表示已使用的内存 单位MB</b><br>
-		<b>Y轴表示最近第N次的采集</b>
-			<p>采集间隔: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> 毫秒（建议大于5000）</p>
-
+		<b>X轴表示一秒中有百分之几的时间用于I/O操作</b><br> 
+		<b>Y轴表示最近第N次的采集</b> <br>
+		 <b>%util项的值也是衡量磁盘I/O的一个重要指标，如果%util接近100%，表示磁盘产生的I/O请求太多，
+		 I/O系统已经满负荷的在工作，该磁盘可能存在瓶颈。长期下去，势必影响系统的性能，
+		   可以通过优化程序或者通过更换更高、更快的磁盘来解决此问题。
+		</b>
+		<p>采集间隔: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> 毫秒（建议大于5000）</p>
 
 	</div>
+
 </body>
 </html>

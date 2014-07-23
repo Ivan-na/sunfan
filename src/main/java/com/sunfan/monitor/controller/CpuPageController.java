@@ -7,8 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CpuPageController {
 	
 	@RequestMapping("/total_utilization")
-	public String index() {
+	public String total_utilization() {
 		return "/jsp/monitor/cpu/total_utilization.jsp";
 	}
+	
+	@RequestMapping("/io_wait")
+	public String io_wait() {
+		return "/jsp/monitor/cpu/io_wait.jsp";
+	}
+
 
 }

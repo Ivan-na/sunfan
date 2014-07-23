@@ -50,6 +50,12 @@ public class IOstatInfoUtil extends EntityBaseUtil{
 			ioStatinfo.setW_await(resolveValueByTagName(head,info,"w_await"));
 			ioStatinfo.setSvctm(resolveValueByTagName(head,info,"svctm"));
 			ioStatinfo.setUtil(resolveValueByTagName(head,info,"%util"));
+			
+			ioStatinfo.setBlk_read(resolveValueByTagName(head,info,"Blk_read"));
+			ioStatinfo.setBlk_read_s(resolveValueByTagName(head,info,"Blk_read/s"));
+			ioStatinfo.setBlk_wrtn(resolveValueByTagName(head,info,"Blk_wrtn"));
+			ioStatinfo.setBlk_wrtn_s(resolveValueByTagName(head,info,"Blk_wrtn/s"));
+			
 			IOstatInfoList.add(ioStatinfo);
 		}
 		return IOstatInfoList;

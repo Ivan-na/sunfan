@@ -26,7 +26,10 @@ public class IOstatInfo {
 	private String w_await; // w_await
 	private String svctm; // svctm
 	private String util; // %util
-
+	private String blk_read_s; // Blk_read/s    kb   
+	private String blk_wrtn_s; //Blk_wrtn/s     kb
+	private String blk_read;//Blk_read          kb
+	private String blk_wrtn; // Blk_wrtn        kb
 	/**
 	 * Indicate the number of transfers per second that were issued to the
 	 * device. A transfer is an I/O request to the device. Multiple logical
@@ -217,6 +220,38 @@ public class IOstatInfo {
 
 	public void setTps(String tps) {
 		this.tps = tps;
+	}
+
+	public String getBlk_read_s() {
+		return blk_read_s;
+	}
+
+	public void setBlk_read_s(String blk_read_s) {
+		this.blk_read_s = blk_read_s;
+	}
+
+	public String getBlk_wrtn_s() {
+		return blk_wrtn_s;
+	}
+
+	public void setBlk_wrtn_s(String blk_wrtn_s) {
+		this.blk_wrtn_s = blk_wrtn_s;
+	}
+
+	public String getBlk_read() {
+		return blk_read;
+	}
+
+	public void setBlk_read(String blk_read) {
+		this.blk_read = blk_read;
+	}
+
+	public String getBlk_wrtn() {
+		return blk_wrtn;
+	}
+
+	public void setBlk_wrtn(String blk_wrtn) {
+		this.blk_wrtn = blk_wrtn;
 	}
 
 }

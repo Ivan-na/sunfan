@@ -16,9 +16,9 @@ pageContext.setAttribute("basePath",basePath);
   <body>
     <div>
     <form id="form1" action="" >
-          Server_ip  <input type="text" name="url" id="url"><br>
-          Username <input type="text" name="username" id="username"><br>
-          Password  <input type="text" name="password" id="password"><br>
+          Server_ip  <input type="text" name="url" id="url" value="172.25.5.175"><br>
+          Username <input type="text" name="username" id="username" value="rduser"><br>
+          Password  <input type="text" name="password" id="password" value="123"><br>
             <input type="button" value="login" id="but1">
     </form>
     </div>

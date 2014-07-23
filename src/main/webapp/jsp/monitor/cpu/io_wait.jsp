@@ -8,22 +8,22 @@ pageContext.setAttribute("basePath",basePath);
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Memory_used</title>
+	<title>Cpus_ioWait</title>
 	<link href="${pageScope.basePath}/resource/js/flot/examples/examples.css" rel="stylesheet" type="text/css">
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.flot.js"></script>
 	<script type="text/javascript">
-	function queryMemory(){
+	function queryCpu(){
         var user={url:'',username:'',password:''};
         var res;
         $.ajax({
-            url:"${pageScope.basePath}memory",
+            url:"${pageScope.basePath}cpu",
             type:"post", 
             data:user,   
             async:false,
             success:function(reData){ 
             var objs = jQuery.parseJSON(reData);  
-            res = parseFloat(objs.used);
+            res = parseFloat(objs[0].iowait); 
             }
         });
         return res;
@@ -39,8 +39,9 @@ pageContext.setAttribute("basePath",basePath);
 
 			if (data.length > 0)
 				data = data.slice(1);
+
 			while (data.length < totalPoints) {
-				var y = queryMemory();  
+				var y = queryCpu();  
 				data.push(y);
 			}
 			var res = [];
@@ -73,7 +74,7 @@ pageContext.setAttribute("basePath",basePath);
 			},
 			yaxis: {
 				min: 0,
-				max: 12000
+				max: 30
 			},
 			xaxis: {
 				show: totalPoints
@@ -106,7 +107,7 @@ pageContext.setAttribute("basePath",basePath);
 <body>
 
 	<div id="header">
-		<h3>已使用的资源</h3>
+		<h3>CPU等待磁盘读写时占用时间百分比</h3>
 	</div>
 
 	<div id="content">
@@ -114,11 +115,14 @@ pageContext.setAttribute("basePath",basePath);
 		<div class="demo-container">
 			<div id="placeholder" class="demo-placeholder"></div>
 		</div>
-		<b>X轴表示已使用的内存 单位MB</b><br>
-		<b>Y轴表示最近第N次的采集</b>
-			<p>采集间隔: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> 毫秒（建议大于5000）</p>
+		
+		<b>X轴表示是CPU等待磁盘的占用时间百分比</b><br>
+		<b>Y轴表示最近第N次的采集</b><br>
+	    <b>如果iowait%高于20%（参考值）说明磁盘读写的等待时间过长</b><br>
 
+		<p>采集间隔: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> 毫秒（建议大于5000）</p>
 
 	</div>
+
 </body>
 </html>

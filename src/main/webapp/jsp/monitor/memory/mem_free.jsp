@@ -8,7 +8,7 @@ pageContext.setAttribute("basePath",basePath);
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Memory_used</title>
+	<title>Memory_free</title>
 	<link href="${pageScope.basePath}/resource/js/flot/examples/examples.css" rel="stylesheet" type="text/css">
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.js"></script>
 	<script language="javascript" type="text/javascript" src="${pageScope.basePath}/resource/js/flot/jquery.flot.js"></script>
@@ -23,7 +23,7 @@ pageContext.setAttribute("basePath",basePath);
             async:false,
             success:function(reData){ 
             var objs = jQuery.parseJSON(reData);  
-            res = parseFloat(objs.used);
+            res = parseFloat(objs.free);
             }
         });
         return res;
@@ -106,7 +106,7 @@ pageContext.setAttribute("basePath",basePath);
 <body>
 
 	<div id="header">
-		<h3>已使用的资源</h3>
+		<h3>空闲的资源</h3>
 	</div>
 
 	<div id="content">
@@ -114,8 +114,11 @@ pageContext.setAttribute("basePath",basePath);
 		<div class="demo-container">
 			<div id="placeholder" class="demo-placeholder"></div>
 		</div>
-		<b>X轴表示已使用的内存 单位MB</b><br>
-		<b>Y轴表示最近第N次的采集</b>
+		<b>X轴表示空闲的内存 单位MB</b><br>
+		<b>Y轴表示最近第N次的采集</b><br>
+		<b>经验公式：应用程序可用内存/系统物理内存>70%时，表示系统内存资源非常充足，不影响系统性能，应用程序可用内存/系统物理内存<20%时，
+		表示系统内存资源紧缺，需要增加系统内存</b>
+		
 			<p>采集间隔: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> 毫秒（建议大于5000）</p>
 
 
