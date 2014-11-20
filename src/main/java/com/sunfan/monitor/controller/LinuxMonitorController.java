@@ -116,5 +116,19 @@ public class LinuxMonitorController {
 		}
 		return res;
 	}
+	
+	@RequestMapping("/connections_count")
+	public String conections(HttpServletRequest request) {
+		String res = null;
+		try {
+			User u = (User) request.getSession().getAttribute("sUser");
+			res = linuxService.inputConections(u.getUrl(), u.getUsername(), u.getPassword());
+			res = JsonMapper.toNonDefaultJson(res);
+			System.out.println(res);
+		} catch (IOException e) {
+			log.error("连接数获取异常",e);
+		}
+		return res;
+	}
 
 }

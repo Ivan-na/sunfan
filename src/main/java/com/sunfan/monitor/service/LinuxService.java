@@ -16,10 +16,11 @@ import com.sunfan.monitor.platform.linux.LinuxSessionHandle;
 @Component
 public class LinuxService {
 	private  String defaultTopComand = "top -b -n 1";
-	private  String defaultMpstatComand = "mpstat -P ALL";
+	private  String defaultMpstatComand = "mpstat 1 1";//"mpstat -P ALL"
 	private  String defaultFreeCommand = "free -m";
-	private  String defaultIostatCommand = "iostat -d";
-	private  String defaultIostatCommand_x = "iostat -d -x";
+	private  String defaultIostatCommand = "iostat -d 1 2";
+	private  String defaultIostatCommand_x = "iostat -d -x 1 2";
+	private  String defaultConections = "netstat -an|grep 9080|grep -c EST";
 	@Autowired
 	private LinuxConnectionPool pool ;
 	@Autowired
@@ -87,9 +88,22 @@ public class LinuxService {
 		return this.executeCommand(url, user, password, defaultIostatCommand_x);
 	}
 	
+	/**
+	 * "netstat -an|grep 9080|grep -c EST";
+	 * @param url
+	 * @param user
+	 * @param password
+	 * @return
+	 * @throws IOException
+	 */
+	public String inputConections(String url,String user,String password) throws IOException{
+		return this.executeCommand(url, user, password, defaultConections);
+	}
+	
+	
 	public String executeCommand(String url,String user,String password,String command) throws IOException{
 		IConnectable lc =  pool.borrowObject(url,user,password);
 		return handle.executeCommand(lc.getConnection(),command);
 	}
-
+	
 }

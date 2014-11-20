@@ -2,12 +2,10 @@ package com.sunfan.monitor.service.test;
 
 import java.io.IOException;
 
-import org.junit.Before;
+
 import org.junit.Test;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.sunfan.monitor.controller.LinuxMonitorController;
 import com.sunfan.monitor.entity.util.CpuInfoUtil;
@@ -16,12 +14,11 @@ import com.sunfan.monitor.entity.util.MemoryInfoUtil;
 import com.sunfan.monitor.manager.pool.LinuxConnectionPool;
 import com.sunfan.monitor.platform.linux.LinuxSessionHandle;
 import com.sunfan.monitor.service.LinuxService;
-
 public class LinuxServiceTest {
 	LinuxService service ;
 	@Test
 	public void testMonitor() throws IOException {
-		String res = service.executeCommand("172.25.5.175", "rduser", "123", "whoiam");
+		String res = new LinuxService().executeCommand("172.25.5.177", "rduser", "123", "iostat -d -x 1 2");
 		System.out.println(res);
 	}
 	@Test

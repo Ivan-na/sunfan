@@ -29,5 +29,9 @@ public class IoPageController {
 	public String total_util() {
 		return "/jsp/monitor/io/total_util.jsp";
 	}
+	@RequestMapping("/connections")
+	public String connections() {
+		return "/jsp/monitor/io/connections.jsp";
+	}
 
 }

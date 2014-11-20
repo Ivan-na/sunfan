@@ -29,9 +29,10 @@ pageContext.setAttribute("basePath",basePath);
    <li> <a href=${pageScope.basePath}/blk_wrtn_s target="_blank">磁盘每秒写入的扇区量（1个扇区=512bytes）</a>--> Indicate the amount of data write from the all device
                      expressed in a number of blocks per second.</li>
    <li> <a href=${pageScope.basePath}/blk_read_s target="_blank">磁盘每秒读取的扇区量（1个扇区=512bytes</a>--> Indicate the amount of data read from the all device
-                     expressed in a number of blocks per second.</li></li>
+                     expressed in a number of blocks per second.</li>
    <li> <a href=${pageScope.basePath}/total_util target="_blank">磁盘操作的CPU占有率</a>-->Percentage  of  CPU  time  during  which  I/O  requests were issued to the device (bandwidth utilization for the
-                     device). Device saturation occurs when this value is close to 100%.</li></li>
+                     device). Device saturation occurs when this value is close to 100%.</li>
+    <li> <a href=${pageScope.basePath}/connections target="_blank">9080端口的连接数</a></li>
 <!--    <li> <a href=${pageScope.basePath}/blk_wrtn target="_blank">写入磁盘的总量</a></li> -->
 <!--    <li> <a href=${pageScope.basePath}/blk_read target="_blank">读取磁盘的总量</a></li> -->
    </ul>
